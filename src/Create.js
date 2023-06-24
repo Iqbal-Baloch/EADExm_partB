@@ -3,16 +3,21 @@ import { useRef } from "react";
 const Create = ()=>{
     const handleSubmit = (e) =>{
         e.preventDefault(); 
-
-        fetch("localhost:5000/recepie/new 404 (N", {
-            method: "POST", 
-            body:JSON.stringify({
-                name: nameRef.current.value,
-                description: decRef.current.value,
-                ingredients: ingRef.current.value, 
-                instruction: insRef.current.value,
-                image: imgRef.current.value,
-            })
+        const obj = {
+            title: nameRef.current.value,
+            description: decRef.current.value,
+            ingredients: ingRef.current.value, 
+            instruction: insRef.current.value,
+            image: imgRef.current.value,
+        }
+        console.log(obj);
+        fetch("127.0.0.1/recepie/new", {
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({a: 1, b: 2})
         }).then(res =>{
             return res.json(); 
         }).then(res => {

@@ -1,9 +1,10 @@
 const express = require("express"); 
 const mongoose = require("mongoose"); 
-
+const bodyParser = require("body-parser")
 const app = express() ;
-app.use(express.json()); 
-app.use(express.urlencoded) ;
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({extended: true}))
+// app.use(express.urlencoded) ;
 mongoose.connect("mongodb://127.0.0.1:27017/Recipe").then(()=>{
     console.log("connected to database"); 
 }).catch(err=>{
@@ -23,6 +24,7 @@ const recepieSchema = mongoose.Schema({
 const Recipe = mongoose.model("recepies", recepieSchema); 
 
 app.post("/recepie/new", (req, res)=>{
+    console.log("hello")
     console.log(res.body);
     const data = new Recipe(req.body) ;
     data.save().then(item=>{
