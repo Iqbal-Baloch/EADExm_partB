@@ -23,6 +23,8 @@ const recepieSchema = mongoose.Schema({
 })
 const Recipe = mongoose.model("recepies", recepieSchema); 
 
+// crud operations
+
 app.post("/recepie/new", (req, res)=>{
     console.log("hello")
     console.log(res.body);
@@ -32,6 +34,24 @@ app.post("/recepie/new", (req, res)=>{
     }).catch(err =>{
         res.status(300).json({created: false}) ;
     })
+})
+
+app.get("/recepies", async (req, res)=>{
+    const recepies = await Recipe.find() ;
+    res.json(recepies) ;
+})
+
+app.get("/recepies/:id", async (req, res) =>{
+    const recepie = await Recipe.findById(req?.params?.id) ;
+    res.json(recepie) ;
+})
+app.delete("/recepies/delete/:id", async (req, res) =>{
+    try{
+        const recepie = await Recipe.findByIdAndRemove(req?.params?.id) ;
+        res.json({removed: true}) ;
+    }catch(err){
+        res.json({removed: false}) ;
+    }
 })
 
 
