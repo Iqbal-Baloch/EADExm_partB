@@ -17,9 +17,6 @@ const Navbar = ()=>{
           <li>
             <Link to="/create">Create</Link>
           </li>
-          <li>
-            <Link to="/color-picker">Color Picker</Link>
-          </li>
         </ul>
         </div>
     )

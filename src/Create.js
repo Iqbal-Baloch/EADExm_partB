@@ -1,23 +1,55 @@
+import { useRef } from "react";
+
 const Create = ()=>{
+    const handleSubmit = (e) =>{
+        e.preventDefault(); 
+
+        fetch("localhost:5000/recepie/new 404 (N", {
+            method: "POST", 
+            body:JSON.stringify({
+                name: nameRef.current.value,
+                description: decRef.current.value,
+                ingredients: ingRef.current.value, 
+                instruction: insRef.current.value,
+                image: imgRef.current.value,
+            })
+        }).then(res =>{
+            return res.json(); 
+        }).then(res => {
+            console.log(res);
+        }).catch(err=>{
+            console.log(err) ;
+        })
+
+    }
+    const nameRef = useRef()
+    const decRef = useRef()
+    const ingRef = useRef()
+    const insRef = useRef()
+    const imgRef = useRef()
     return (
-        <form action="/product/save" method="post" >
+        <form onSubmit={handleSubmit} >
             <label>
-                Product Name:
-                <input  type="text" name="name" placeholder="enter product name"/>
+                Title: 
+                <input required  type="text" ref={nameRef} name="title" placeholder="enter Title"/>
             </label> <br/>
             <label>
-                Product Price:
-                <input  type="number" name="price" placeholder="enter product price"/>
+                Description:
+                <input required  type="text" ref={decRef} name="description" placeholder="enter description"/>
             </label><br/>
             <label>
-                Product Quantity:
-                <input  type="number" name="qty" placeholder="enter product Quantity"/>
+                ingredients:
+                <input required  type="text" ref={ingRef} name="ingredients" placeholder="enter ingredients"/>
             </label><br/>
             
             <label>
-                Product Manufacturer:
-                <input  type="text" name="manufacturer" placeholder="enter product Manufacturer"/>
-            </label>
+                instruction:
+                <input required  type="text" ref={insRef} name="instruction" placeholder="enter instruction"/>
+            </label><br/>
+            <label>
+                image:
+                <input required ref={imgRef} type="file" name="image"/>
+            </label> <br/>
             <input type="submit" value="Save"></input>
            
         </form>
