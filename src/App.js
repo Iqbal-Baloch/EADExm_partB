@@ -1,5 +1,6 @@
 import './App.css';
 import AppLayout from './AppLayout';
+import Create from './Create';
 import Listing from './Listing';
 import Navbar from './Navbar';
 import { BrowserRouter, Routes, Route, useNavigate} from "react-router-dom";
@@ -20,7 +21,7 @@ function AppRoutes(){
       <Routes>
         <Route element= {<AppLayout/>}>
           <Route index element={<Listing recepies={[{_id:1, title: "java", description: "dd"}]}/>} />
-          {/* <Route path="info" element={<Info />} /> */}
+          <Route path="create" element={<Create />} />
         </Route>
 
       </Routes>
