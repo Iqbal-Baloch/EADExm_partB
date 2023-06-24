@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom";
 
 const Navbar = ()=>{
     const [search, setSearch] = useState(""); 
@@ -8,6 +9,18 @@ const Navbar = ()=>{
                 <input type="text" name="search" value={search} onChange={(e) => {setSearch(e.target.value)}} />
                 <input type="submit" value="search"/>
             </form>
+
+            <ul>
+          <li>
+            <Link to="/">Listing</Link>
+          </li>
+          <li>
+            <Link to="/create">Create</Link>
+          </li>
+          <li>
+            <Link to="/color-picker">Color Picker</Link>
+          </li>
+        </ul>
         </div>
     )
 }
